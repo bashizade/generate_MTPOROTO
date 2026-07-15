@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ساخت پروکسی تلگرام</title>
+
+    <!-- Persian Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        vazir: ["Vazirmatn", "sans-serif"]
+                    },
+                    colors: {
+                        telegram: "#2AABEE"
+                    },
+                    boxShadow: {
+                        card: "0 30px 80px rgba(0, 0, 0, 0.45)"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: "Vazirmatn", sans-serif;
+        }
+
+        .background-grid {
+            background-image:
+                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #fff;
+            -webkit-box-shadow: 0 0 0 1000px #111827 inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden bg-[#070A0F] text-white">
+
+    <!-- Background -->
+    <div class="pointer-events-none fixed inset-0 background-grid"></div>
+
+    <div
+        class="pointer-events-none fixed left-1/2 top-[-180px]
+               h-[420px] w-[420px] -translate-x-1/2 rounded-full
+               bg-telegram/20 blur-[120px]">
+    </div>
+
+    <main class="relative flex min-h-screen items-center justify-center px-4 py-10">
+
+        <section class="w-full max-w-lg">
+
+            <!-- Header -->
+            <div class="mb-7 text-center">
+                <div
+                    class="mx-auto mb-5 flex h-16 w-16 items-center justify-center
+                           rounded-2xl border border-sky-400/20
+                           bg-gradient-to-br from-sky-400 to-blue-600
+                           shadow-lg shadow-sky-500/20">
+
+                    <!-- Telegram icon -->
+                    <svg
+                        class="h-8 w-8 text-white"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true">
+                        <path d="M21.944 2.506a1.5 1.5 0 0 0-1.51-.196L2.74 9.157c-1.18.456-1.164 1.104-.215 1.395l4.54 1.417 10.51-6.63c.496-.302.95-.14.577.19l-8.516 7.687-.327 4.57c.48 0 .69-.22.958-.48l2.3-2.235 4.785 3.535c.883.487 1.517.237 1.737-.817L22.23 3.02a1.49 1.49 0 0 0-.286-.514Z"/>
+                    </svg>
+                </div>
+
+                <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                    ساخت پروکسی تلگرام
+                </h1>
+
+                <p class="mt-3 text-sm leading-7 text-slate-400">
+                    اطلاعات پروکسی MTProto را وارد کنید تا لینک اتصال ساخته شود.
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div
+                class="rounded-3xl border border-white/10
+                       bg-slate-900/75 p-5 shadow-card
+                       backdrop-blur-xl sm:p-7">
+
+                <form id="proxyForm" class="space-y-5" novalidate>
+
+                    <!-- Server -->
+                    <div>
+                        <label
+                            for="server"
+                            class="mb-2 block text-sm font-medium text-slate-300">
+                            آدرس سرور
+                        </label>
+
+                        <div class="relative">
+                            <input
+                                id="server"
+                                name="server"
+                                type="text"
+                                dir="ltr"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="proxy.example.com"
+                                class="h-13 w-full rounded-xl border border-white/10
+                                       bg-slate-950/60 px-4 py-3.5 text-left
+                                       text-sm text-white outline-none transition
+                                       placeholder:text-slate-600
+                                       focus:border-sky-400/70
+                                       focus:ring-4 focus:ring-sky-500/10"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Port -->
+                    <div>
+                        <label
+                            for="port"
+                            class="mb-2 block text-sm font-medium text-slate-300">
+                            پورت
+                        </label>
+
+                        <input
+                            id="port"
+                            name="port"
+                            type="number"
+                            dir="ltr"
+                            inputmode="numeric"
+                            min="1"
+                            max="65535"
+                            placeholder="443"
+                            class="w-full rounded-xl border border-white/10
+                                   bg-slate-950/60 px-4 py-3.5 text-left
+                                   text-sm text-white outline-none transition
+                                   placeholder:text-slate-600
+                                   focus:border-sky-400/70
+                                   focus:ring-4 focus:ring-sky-500/10"
+                        >
+                    </div>
+
+                    <!-- Secret -->
+                    <div>
+                        <div class="mb-2 flex items-center justify-between">
+                            <label
+                                for="secret"
+                                class="block text-sm font-medium text-slate-300">
+                                سکرت
+                            </label>
+
+                            <button
+                                id="toggleSecret"
+                                type="button"
+                                class="text-xs font-medium text-slate-500
+                                       transition hover:text-sky-400">
+                                نمایش سکرت
+                            </button>
+                        </div>
+
+                        <input
+                            id="secret"
+                            name="secret"
+                            type="password"
+                            dir="ltr"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="Secret"
+                            class="w-full rounded-xl border border-white/10
+                                   bg-slate-950/60 px-4 py-3.5 text-left
+                                   text-sm text-white outline-none transition
+                                   placeholder:text-slate-600
+                                   focus:border-sky-400/70
+                                   focus:ring-4 focus:ring-sky-500/10"
+                        >
+                    </div>
+
+                    <!-- Error -->
+                    <div
+                        id="errorBox"
+                        role="alert"
+                        class="hidden rounded-xl border border-red-500/20
+                               bg-red-500/10 px-4 py-3 text-sm leading-6
+                               text-red-300">
+                    </div>
+
+                    <!-- Submit -->
+                    <button
+                        id="submitButton"
+                        type="submit"
+                        class="group flex w-full items-center justify-center
+                               gap-2 rounded-xl bg-gradient-to-l
+                               from-sky-400 to-blue-600 px-5 py-3.5
+                               font-bold text-white shadow-lg
+                               shadow-sky-500/20 transition
+                               hover:-translate-y-0.5
+                               hover:shadow-sky-500/30
+                               active:translate-y-0">
+
+                        <span>ساخت و اتصال به پروکسی</span>
+
+                        <svg
+                            class="h-5 w-5 transition group-hover:-translate-x-1"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M19 12H5m7 7-7-7 7-7"
+                            />
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Generated link -->
+                <div
+                    id="resultBox"
+                    class="mt-5 hidden border-t border-white/10 pt-5">
+
+                    <p class="mb-2 text-xs font-medium text-slate-400">
+                        لینک ساخته‌شده
+                    </p>
+
+                    <div
+                        class="flex items-center gap-2 rounded-xl
+                               border border-white/10 bg-slate-950/60 p-2">
+
+                        <input
+                            id="generatedLink"
+                            type="text"
+                            dir="ltr"
+                            readonly
+                            class="min-w-0 flex-1 bg-transparent px-2
+                                   text-left text-xs text-slate-400 outline-none"
+                        >
+
+                        <button
+                            id="copyButton"
+                            type="button"
+                            class="shrink-0 rounded-lg border border-white/10
+                                   bg-white/5 px-3 py-2 text-xs font-medium
+                                   text-slate-300 transition
+                                   hover:border-sky-400/30
+                                   hover:bg-sky-400/10
+                                   hover:text-sky-300">
+                            کپی
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-5 text-center text-xs leading-6 text-slate-600">
+                اطلاعات واردشده در هیچ سروری ذخیره یا ارسال نمی‌شود.
+            </p>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById("proxyForm");
+        const serverInput = document.getElementById("server");
+        const portInput = document.getElementById("port");
+        const secretInput = document.getElementById("secret");
+
+        const errorBox = document.getElementById("errorBox");
+        const resultBox = document.getElementById("resultBox");
+        const generatedLink = document.getElementById("generatedLink");
+
+        const toggleSecret = document.getElementById("toggleSecret");
+        const copyButton = document.getElementById("copyButton");
+
+        function showError(message) {
+            errorBox.textContent = message;
+            errorBox.classList.remove("hidden");
+        }
+
+        function hideError() {
+            errorBox.textContent = "";
+            errorBox.classList.add("hidden");
+        }
+
+        function normalizeServer(server) {
+            return server
+                .trim()
+                .replace(/^https?:\/\//i, "")
+                .replace(/\/+$/, "");
+        }
+
+        function createTelegramProxyLink(server, port, secret) {
+            const params = new URLSearchParams({
+                server: server,
+                port: port,
+                secret: secret
+            });
+
+            return `https://t.me/proxy?${params.toString()}`;
+        }
+
+        toggleSecret.addEventListener("click", () => {
+            const isHidden = secretInput.type === "password";
+
+            secretInput.type = isHidden ? "text" : "password";
+            toggleSecret.textContent = isHidden
+                ? "مخفی کردن سکرت"
+                : "نمایش سکرت";
+        });
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            hideError();
+
+            const server = normalizeServer(serverInput.value);
+            const port = Number(portInput.value);
+            const secret = secretInput.value.trim();
+
+            if (!server) {
+                showError("لطفاً آدرس سرور را وارد کنید.");
+                serverInput.focus();
+                return;
+            }
+
+            if (
+                server.includes(" ") ||
+                server.includes("/") ||
+                server.includes("?") ||
+                server.includes("#")
+            ) {
+                showError("آدرس سرور معتبر نیست. فقط دامنه یا IP را وارد کنید.");
+                serverInput.focus();
+                return;
+            }
+
+            if (!Number.isInteger(port) || port < 1 || port > 65535) {
+                showError("پورت باید عددی بین ۱ تا ۶۵۵۳۵ باشد.");
+                portInput.focus();
+                return;
+            }
+
+            if (!secret) {
+                showError("لطفاً سکرت پروکسی را وارد کنید.");
+                secretInput.focus();
+                return;
+            }
+
+            if (/\s/.test(secret)) {
+                showError("سکرت نباید شامل فاصله باشد.");
+                secretInput.focus();
+                return;
+            }
+
+            const telegramLink = createTelegramProxyLink(
+                server,
+                String(port),
+                secret
+            );
+
+            generatedLink.value = telegramLink;
+            resultBox.classList.remove("hidden");
+
+            // Open official Telegram proxy link
+            window.location.assign(telegramLink);
+        });
+
+        copyButton.addEventListener("click", async () => {
+            if (!generatedLink.value) return;
+
+            try {
+                await navigator.clipboard.writeText(generatedLink.value);
+                copyButton.textContent = "کپی شد";
+
+                setTimeout(() => {
+                    copyButton.textContent = "کپی";
+                }, 1800);
+            } catch {
+                generatedLink.select();
+                document.execCommand("copy");
+
+                copyButton.textContent = "کپی شد";
+
+                setTimeout(() => {
+                    copyButton.textContent = "کپی";
+                }, 1800);
+            }
+        });
+    </script>
+</body>
+</html>
