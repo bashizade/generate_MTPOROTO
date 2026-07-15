@@ -1,38 +1,3 @@
-# استخراج پیام- 1405/04/24 ساعت 12:00 صبح
-
-**Date:** 1405/04/24 ساعت 02:19 عصر
-
-## شما
-
-متن زیر را مناسب کن برای فایل readme :
-
-<div align="center">
-
-# ⚡ IsatisStackTeam
-
-### آموزش راه اندازی پروکسی تلگرامم
-
-[![Telegram](https://img.shields.io/badge/Telegram-IsatisStackTeam-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://telegram.me/IsatisStackTeam)
-[![YouTube](https://img.shields.io/badge/YouTube-IsatisStackTeam-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@IsatisStack)
-
-### 🌐 [مشاهده دمو زنده پنل](https://bashizade.github.io/generate_MTPOROTO/)
-
-</div>
-
-1 - ابتدا وارد وبسایت Railway بشید
-2 - با استفاده از ایمیل یا حساب گیتهاب وارد حساب کاربری Railway شوید
-3 - بر روی Docker Image کلیک کنید
-4 - مقدار telegrammessenger/proxy:latest را وارد کنید و اینتر را بزنید
-5 - صبر کنید تا مراحل راه اندازی انجام شود
-6 - بعد از راه اندازی از بخش CONSOLE دستوری زیر را وارد کنید
-7 - openssl rand -hex 16
-8 - مقدار دریافت شده را انتخاب و راست کلیک کنید و کپی کنید
-9 - به بخش Variables بروید و متغیر های زیر را ایجاد کنید
-SECRET=مقداری که کپی کردید
-WORKERS=2
-10 - به بخش Settings بروید و از بخش Network بر روی TCP Proxy یا Add TCP Proxy کلیک کنید و پورت را 443 بگذارید
-11 - حال به آدرس https://bashizade.github.io/generate_MTPOROTO/ بروید و در بخش آدرس سرور دامنه ایجاد شده توسط railway را قرار دهید و در پورت مقدار ایجاد شده توسط railway را قرار دهید در بهش secret هم مقداری که در بخش متغیرها قرار دادید قرار دهید و بر روی ساخت بزنید
-
 ## دستیار
 
 <div align="center">
